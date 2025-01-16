@@ -410,6 +410,7 @@ const LandingPage = () => {
             <ProjectCard 
               title="Portfolio Website"
               description="This personal portfolio website built using react... designed to showcase my skills and projects!"
+              githubLink="https://github.com/michaelboling777/Michael_PortfolioWebsite"
               hasEffects={false}
             />
 

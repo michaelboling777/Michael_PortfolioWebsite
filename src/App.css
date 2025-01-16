@@ -1,0 +1,243 @@
+/* Tailwind Imports
+-------------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles & Transitions
+-------------------------------------------------- */
+/* Enable smooth color transitions for all elements */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Mobile navigation animation properties */
+.transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Layout Utilities
+-------------------------------------------------- */
+/* 1:1 aspect ratio container for visualizations */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* App Container
+-------------------------------------------------- */
+.App {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark Mode Styles
+-------------------------------------------------- */
+/* Dark mode background */
+.dark .App {
+  background-color: #0f172a;
+}
+
+/* Header Components
+-------------------------------------------------- */
+header {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.dark header {
+  background-color: #1e293b;
+}
+
+/* Dark Mode Toggle Component
+-------------------------------------------------- */
+/* Toggle switch container */
+.toggle-switch {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 25px;
+  margin: 10px;
+}
+
+/* Hide default checkbox */
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Custom toggle switch styling */
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  border-radius: 25px;
+  transition: background-color 0.4s;
+}
+
+/* Toggle switch circle/knob */
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+/* Toggle switch active states */
+input:checked + .toggle-label {
+  background-color: #3b82f6;
+}
+
+input:checked + .toggle-label::after {
+  transform: translateX(25px);
+}
+
+/* Layout
+-------------------------------------------------- */
+/* Main content container */
+main {
+  padding: 80px 20px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Algorithm Visualization Components
+-------------------------------------------------- */
+/* Container for algorithm visualizations */
+.algorithm-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.dark .algorithm-container {
+  background-color: #1e293b;
+}
+
+/* Search Grid Visualization
+-------------------------------------------------- */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin-top: 20px;
+}
+
+/* Individual grid cells */
+.grid-cell {
+  aspect-ratio: 1;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Grid cell states */
+.dark .grid-cell {
+  background-color: #334155;
+}
+
+.grid-cell.visited {
+  background-color: #93c5fd;
+}
+
+.grid-cell.ship {
+  background-color: #22c55e;
+}
+
+.dark .grid-cell.visited {
+  background-color: #60a5fa;
+}
+
+.dark .grid-cell.ship {
+  background-color: #16a34a;
+}
+
+/* QuickSort Visualization
+-------------------------------------------------- */
+/* Container for the sorting array */
+.array-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 200px;
+  margin: 20px 0;
+}
+
+/* Individual array elements */
+.array-bar {
+  background-color: #3b82f6;
+  transition: height 0.3s ease;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+}
+
+.dark .array-bar {
+  background-color: #60a5fa;
+}
+
+/* UI Components
+-------------------------------------------------- */
+/* Button styles */
+button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Animations
+-------------------------------------------------- */
+/* Scale animation for highlighting elements */
+@keyframes highlight {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.highlight {
+  animation: highlight 0.5s ease;
+}
+
+/* Responsive Design
+-------------------------------------------------- */
+/* Tablet and mobile adjustments */
+@media (max-width: 1024px) {
+  main {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+
+/* ////////////////////////////// nw.... */
+
+
+

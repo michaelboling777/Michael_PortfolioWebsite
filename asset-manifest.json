@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.68be44f5.css",
-    "main.js": "/static/js/main.1a691621.js",
+    "main.js": "/static/js/main.be52bfec.js",
     "static/media/michaelboling_spinningcube.gif": "/static/media/michaelboling_spinningcube.180c80c45527014a61c0.gif",
     "static/media/Web_Photo_Editor.jpg": "/static/media/Web_Photo_Editor.a2d992902ef4d802999e.jpg",
     "index.html": "/index.html",
     "main.68be44f5.css.map": "/static/css/main.68be44f5.css.map",
-    "main.1a691621.js.map": "/static/js/main.1a691621.js.map"
+    "main.be52bfec.js.map": "/static/js/main.be52bfec.js.map"
   },
   "entrypoints": [
     "static/css/main.68be44f5.css",
-    "static/js/main.1a691621.js"
+    "static/js/main.be52bfec.js"
   ]
 }

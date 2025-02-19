@@ -47,7 +47,7 @@ const InterestCard = memo(({ icon, title, items, onMouseEnter, onMouseLeave }) =
 
 
 // Displays project information with optional effects
-const ProjectCard = memo(({ title, description, image, githubLink, hasEffects = true, isMatrix = false }) => {
+const ProjectCard = memo(({ title, description, image, githubLink, hasEffects = true, isMatrix = false, disableScale = false }) => {
   const handleInteraction = (e) => {
     if (!e.target.closest('a')) {
       e.preventDefault();
@@ -55,22 +55,30 @@ const ProjectCard = memo(({ title, description, image, githubLink, hasEffects = 
     }
   };
 
+  // Choose effect classes based on whether scaling is disabled.
+  const effectClasses = hasEffects 
+    ? (disableScale 
+        ? 'transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl'
+        : 'transition-all duration-500 ease-in-out transform hover:scale-[1.02]')
+    : '';
+
   return (
     <div 
-      className={`relative group bg-slate-800 p-6 rounded-lg overflow-hidden ${
-        hasEffects ? 'transition-all duration-500 ease-in-out transform hover:scale-[1.02]' : ''
-      } ${(!isMatrix && image) ? 'hover:bg-white' : ''}`}
+      className={`relative group bg-slate-800 p-6 rounded-lg overflow-hidden ${effectClasses} ${(!isMatrix && image) ? 'hover:bg-white' : ''}`}
       onClick={handleInteraction}
       onTouchStart={handleInteraction}
     >
-      {isMatrix && <MatrixAnimation className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />}
-      <div className="relative z-10">
+      {isMatrix && (
+        <MatrixAnimation className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      )}
+      <div 
+        className="relative z-10 antialiased" 
+        style={{ transform: 'translateZ(0)', willChange: 'transform' }}
+      >
         <h3 className={`text-xl font-bold mb-4 text-white ${(!isMatrix && image) ? 'group-hover:text-slate-800' : ''}`}>
           {title}
         </h3>
-        <div 
-          className={`mb-4 text-white ${(!isMatrix && image) ? 'group-hover:text-slate-800' : ''}`}
-        >
+        <div className={`mb-4 text-white ${(!isMatrix && image) ? 'group-hover:text-slate-800' : ''}`}>
           {description}
         </div>
         {image && (
@@ -98,6 +106,8 @@ const ProjectCard = memo(({ title, description, image, githubLink, hasEffects = 
     </div>
   );
 });
+
+
 
 const themeColors = {
   default: 'bg-slate-700',
@@ -365,47 +375,51 @@ const LandingPage = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <ProjectCard 
-              title="Rotating Cube"
-              description="A 3D graphics project written in C++ using OpenGL. Demonstrates transformation matrices, real-time rendering, and lighting techniques."
-              image={rotatingCubeGif}
-              githubLink="https://github.com/yourusername/rotating-cube"
-            />
+          <ProjectCard 
+  title="Rotating Cube"
+  description="A 3D graphics project written in C++ using OpenGL. Demonstrates transformation matrices, real-time rendering, and lighting techniques."
+  image={rotatingCubeGif}
+  githubLink="https://github.com/yourusername/rotating-cube"
+  disableScale={true}
+/>
+
             
-            <ProjectCard 
-              title="School Projects"
-              isMatrix={true}
-              description={
-                <div className="flex flex-col items-center">
-                  <p className="mb-4">Check out my notable school projects / coding assignments here!</p>
-                  <Link 
-                    to="/school-projects" 
-                    className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    View School Projects
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      className="h-5 w-5 animate-pulse" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={2} 
-                        d="M13 7l5 5m0 0l-5 5m5-5H6" 
-                      />
-                    </svg>
-                  </Link>
-                </div>
-              }
-              hasEffects={true}
-            />
+<ProjectCard 
+  title="School Projects"
+  isMatrix={true}
+  description={
+    <div className="flex flex-col items-center">
+      <p className="mb-4">Check out my notable school projects / coding assignments here!</p>
+      <Link 
+        to="/school-projects" 
+        className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
+        onClick={(e) => {
+          e.stopPropagation();
+          window.scrollTo(0, 0);
+        }}
+      >
+        View School Projects
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="h-5 w-5 animate-pulse" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M13 7l5 5m0 0l-5 5m5-5H6" 
+          />
+        </svg>
+      </Link>
+    </div>
+  }
+  hasEffects={true}
+  disableScale={true}
+/>
+
             
             <ProjectCard 
               title="Portfolio Website"
